@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>文件下载</title>
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+        .download-container {
+            background: rgba(255,255,255,0.1);
+            padding: 40px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        .download-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 20px 0;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .download-btn:hover {
+            background: #45a049;
+            transform: scale(1.05);
+        }
+        .auto-download {
+            margin-top: 20px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="download-container">
+        <h1>📄 文件下载</h1>
+        <p>点击下方按钮下载文件</p>
+        
+        <!-- 主要下载按钮 -->
+        <a href="您的文件.pdf" download class="download-btn">
+            ⬇️ 立即下载PDF文件
+        </a>
+        
+        <div class="auto-download">
+            <p>如果下载没有自动开始，请点击上方按钮</p>
+        </div>
+    </div>
+
+    <script>
+        // 尝试自动下载（可能被浏览器阻止）
+        window.onload = function() {
+            setTimeout(function() {
+                try {
+                    var link = document.createElement('a');
+                    link.href = 'KHDWXSYSckbg-.pdf';
+                    link.download = 'KHDWXSYSckbg-.pdf';
+                    link.style.display = 'none';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                } catch (e) {
+                    console.log('自动下载被阻止，需要用户手动点击');
+                }
+            }, 1000);
+        };
+    </script>
+</body>
+</html>
