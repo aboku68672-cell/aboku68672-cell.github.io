@@ -3,118 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF文件下载</title>
+    <title>康惠达皮革检测报告</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
-            color: #333;
+            min-height: 100vh;
+            background: #f5f5f5;
         }
         .container {
             background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            padding: 30px;
             text-align: center;
             max-width: 500px;
             width: 100%;
-        }
-        .icon {
-            font-size: 64px;
-            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
         }
         h1 {
-            color: #333;
             margin-bottom: 15px;
-            font-size: 28px;
+            color: #333;
+            font-size: 24px;
         }
         p {
             color: #666;
-            margin-bottom: 25px;
-            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .filename {
+            margin: 15px 0;
+            font-family: monospace;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
         }
         .download-btn {
             display: inline-block;
             background: #4CAF50;
             color: white;
-            padding: 15px 30px;
+            padding: 12px 25px;
             text-decoration: none;
-            border-radius: 50px;
-            font-size: 18px;
+            border-radius: 4px;
             font-weight: bold;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
             margin: 10px 0;
-        }
-        .download-btn:hover {
-            background: #45a049;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        .filename {
-            background: #f8f9fa;
-            padding: 10px 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-            font-family: monospace;
-            color: #333;
-        }
-        .instructions {
-            background: #e7f3ff;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 25px;
-            text-align: left;
-        }
-        .instructions h3 {
-            color: #0066cc;
-            margin-bottom: 10px;
         }
         .success-message {
             display: none;
-            background: #d4edda;
-            color: #155724;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
+            background: #e7f4e4;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 15px;
+            color: #2d5016;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="icon">📄</div>
-        <h1>PDF文件下载</h1>
+        <h1>康惠达皮革检测报告</h1>
         <p>点击下方按钮下载PDF文档</p>
         
         <div class="filename">
-            文件名: <strong id="actual-filename">KHDWXSYSckbg-.pdf</strong>
+            文件名: <strong>KHDWXSYSckbg-.pdf</strong>
         </div>
         
-        <!-- 主要下载按钮 -->
         <a href="KHDWXSYSckbg-.pdf" id="download-link" class="download-btn" download>
-            ⬇️ 下载PDF文件
+            下载PDF文件
         </a>
         
         <div id="success-message" class="success-message">
-            ✅ 下载已开始！如果下载没有自动开始，请点击上方按钮
-        </div>
-        
-        <div class="instructions">
-            <h3>下载说明：</h3>
-            <p>• 点击上方按钮直接下载</p>
-            <p>• 如果下载被阻止，请右键按钮选择"另存为"</p>
-            <p>• 文件将通过GitHub Pages提供下载</p>
+            下载已开始！如果下载没有自动开始，请点击上方按钮
         </div>
     </div>
 
