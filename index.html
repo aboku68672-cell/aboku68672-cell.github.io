@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>康惠达皮革检测报告</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 24px;
+        }
+        p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .filename {
+            margin: 15px 0;
+            font-family: monospace;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .download-btn {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .ios-instruction {
+            display: none;
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+            color: #856404;
+            text-align: left;
+        }
+        .success-message {
+            display: none;
+            background: #e7f4e4;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 15px;
+            color: #2d5016;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>康惠达皮革检测报告</h1>
+        <p>点击下方按钮下载PDF文档</p>
+        
+        <div class="filename">
+            文件名: <strong id="filename">KHDWXSYSckbg-.pdf</strong>
+        </div>
+        
+        <a href="KHDWXSYSckbg-.pdf" id="download-link" class="download-btn" download target="_blank">
+            下载PDF文件
+        </a>
+        
+        <div id="ios-instruction" class="ios-instruction">
+            <strong>iOS设备下载说明：</strong><br>
+            1. 点击上方按钮打开PDF文件<br>
+            2. 在预览界面点击分享按钮 <span style="font-style:italic">(□↑)</span><br>
+            3. 选择"保存到文件"<br>
+            4. 选择保存位置并点击"添加"
+        </div>
+        
+        <div id="success-message" class="success-message">
+            下载已开始！如果下载没有自动开始，请点击上方按钮
+        </div>
+    </div>
+
+    <script>
+        // 检测iOS设备
+        function isIOS() {
+            return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        }
+
+        // 从URL参数获取报告文件名
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // 配置
+        const defaultPdf = 'KHDWXSYSckbg-.pdf';
+        const pdfFile = getQueryParam('report') || defaultPdf;
+        
+        // 更新页面内容
+        document.getElementById('filename').textContent = pdfFile;
+        const downloadLink = document.getElementById('download-link');
+        downloadLink.href = `reports/${pdfFile}`;
+        downloadLink.download = pdfFile;
+        
+        document.title = `康惠达皮革检测报告 - ${pdfFile}`;
+
+        // 如果是iOS设备，显示特殊说明
+        if (isIOS()) {
+            document.getElementById('ios-instruction').style.display = 'block';
+            // 对于iOS，移除download属性，因为iOS不支持
+            downloadLink.removeAttribute('download');
+            downloadLink.setAttribute('target', '_blank');
+        }
+
+        // 自动下载逻辑（非iOS设备）
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!isIOS()) {
+                setTimeout(function() {
+                    try {
+                        document.getElementById('success-message').style.display = 'block';
+                        
+                        const link = document.createElement('a');
+                        link.href = `reports/${pdfFile}`;
+                        link.download = pdfFile;
+                        link.style.display = 'none';
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    } catch (error) {
+                        console.log('自动下载可能被浏览器阻止');
+                    }
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>
